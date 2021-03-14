@@ -1,0 +1,10 @@
+country=usa
+city=kc
+shop=store15
+language=english
+host=http://shopks.tekcities.com/server/marketretail
+ReplyTo=youremail@yourdomain
+tax=0.0825
+pageheight=1000
+printrowwidth=20
+tableseparation=100

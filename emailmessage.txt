@@ -1,0 +1,6 @@
+Order received.#We have received your order. Thank you very much.
+#
+Order shipped.#Your order has been shipped. Thank you.
+#
+Order processed.#Your order has been processed. Thank you.
+#

@@ -1,0 +1,5 @@
+Order received.
+Order shipped.
+Order procesed.
+Message received.
+Thank you.
