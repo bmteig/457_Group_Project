@@ -1,0 +1,505 @@
+
+
+sub More_Country_Initialize
+{
+
+
+%hosts=("base" => "http://localhost/server/marketretail",
+               "kc" => "http://localhost/server/marketretail",
+   );
+
+
+%cookiedomains= ("base" =>"",
+               "kc" =>"",
+);
+
+%cookiepaths= ( "base" =>"",
+               "kc" =>"",
+);
+
+
+
+
+=begin comment
+%hosts=( "base" => "http://www.research-basic.com/server/market",
+               "kc" => "http://www.research-basic.com/server/market",
+);
+
+
+
+%cookiedomains=("base" => ";domain=www.research-basic.com",
+               "kc" => ";domain=www.research-basic.com",
+ );
+
+
+%cookiepaths= ("base"  =>  ";path=/",
+               "kc" =>  ";path=/",
+   );
+
+
+=end comment
+=cut
+
+$storeemail="sales\@pinbulk.com";
+
+#$fileprefix: product files, $httpprefix: common include, $dbprefix: db files.
+#imageprefix: product images, $codeprefix: cgi-bin.
+
+$fileprefix =  "../../../serverdata/marketretail/classify";
+$imageprefix = "../image";
+$opprefix = "../../../serverdata/marketretail/marketop";
+$opimageprefix = "../marketop";
+$codeprefix="/cgi-bin/";
+
+$customerdirectory = "cusdata";
+$purchasedirectory = "invoice";
+#$purchasefiledeletetimedif=604800; # seconds for one week.
+$purchasefiledeletetimedif=3628800; # seconds for six weeks.
+
+$dateformat="mm/dd/yy";
+}
+
+
+sub Country_Initialize
+{
+local (*in) = shift if @_;    # CGI input
+
+
+#@cities=("albuquerque", "altanta", "austin", "baltimore", "boston", "charlotte", "chicago", "cincinnati", 
+#"cleveland", "columbus", "dallasftworth", "denverboulder", "detroit", "houston", 
+#"indianapolis", "kc", "lasvegas", "littlerock", "losangeles", "memphis", "miami",
+#"milwaukee", "minneapolisstpaul", "montreal", "nashville", "newhaven", "newyork", "oklahomacity", #"orlando", 
+#"ottawa", "philadelphia", "phoenix", "pittsburgh", "portland", "puertorico", "raleighdurhamchapelhill", #"renotahoe", "rochester", "sacramento", "saltlakecity", "sanantonio", "sandiego", "sanfrancisco", "sanjose", #"santafe", "seattle", "spokane", "stlouis", "tampa", "toronto", "tucson", 
+#"vancouver", "washingtondc", "wilmington");
+
+@cities=("kc");
+
+#@cityname=("Albuquerque", "Atlanta", "Austin", "Baltimore", "Boston", "Charlotte", "Chicago", #"Cincinnati", "Cleveland", "Columbus", "Dallas/Ft. Worth", "Denver/Boulder", "Detroit", "Houston", 
+#"Indianapolis", "Kansas City", "Las Vegas", "Little Rock", "Los Angeles", "Memphis", "Miami",
+#"Milwaukee", "Minneapolis/St Paul", "Montreal", "Nashville", "New Haven", "New York", "Oklahoma #City", "Orlando", "Ottawa", "Philadelphia", "Phoenix", "Pittsburgh", "Portland", "Puerto Rico", "Raleigh-#Durham-Chapel Hill", "Reno/Tahoe", "Rochester", "Sacramento", "Salt Lake City", "San Antonio", "San #Diego", "San Francisco", "San Jose", "Santa Fe", "Seattle", "Spokane", "St. Louis", "Tampa", "Toronto", #"Tucson", 
+#"Vancouver", "Washington DC", "Wilmington");
+
+@cityname=("$lang{'Kansas City'}");
+
+######End Auto Work Section, Start Common Section
+
+@provincesstates=(
+                   "$lang{'North America'}", 
+                   "$lang{'Washington DC'}",
+                   "$lang{'Alberta'}",
+                   "$lang{'Alabama'}", 
+                   "$lang{'Alaska'}",
+                   "$lang{'Arkansas'}", 
+                   "$lang{'Arizona'}", 
+                   "$lang{'British Columbia'}", 
+                   "$lang{'California'}", 
+                   "$lang{'Colorado'}", 
+                   "$lang{'Connecticut'}",
+                   "$lang{'Delaware'}",
+                   "$lang{'Florida'}", 
+                   "$lang{'Georgia'}", 
+                   "$lang{'Hawaii'}", 
+                   "$lang{'Iowa'}", 
+                   "$lang{'Idaho'}", 
+                   "$lang{'Illinois'}", 
+                   "$lang{'Indiana'}", 
+                   "$lang{'Kansas'}",  
+                   "$lang{'Kentucky'}", 
+                   "$lang{'Louisiana'}", 
+                   "$lang{'Massachusetts'}", 
+                   "$lang{'Manitoba'}", 
+                   "$lang{'Maryland'}", 
+                   "$lang{'Maine'}",
+                   "$lang{'Michigan'}", 
+                   "$lang{'Minnesota'}", 
+                   "$lang{'Missouri'}", 
+                   "$lang{'Mississippi'}", 
+                   "$lang{'Montana'}", 
+                   "$lang{'New Brunswick'}",
+                   "$lang{'North Carolina'}", 
+                   "$lang{'North Dakota'}", 
+                   "$lang{'Nebraska'}",  
+                   "$lang{'Newfoundland'}", 
+                   "$lang{'New Hampshire'}",
+                   "$lang{'New Jersy'}", 
+                   "$lang{'New Mexico'}", 
+                   "$lang{'Northwest Territories'}", 
+                   "$lang{'Nova Scotia'}",
+                   "$lang{'Nevada'}", 
+                   "$lang{'New York'}", 
+                   "$lang{'Ohio'}", 
+                   "$lang{'Oklahoma'}",  
+                   "$lang{'Ontario'}", 
+                   "$lang{'Oregan'}", 
+                   "$lang{'Pennsylvania'}",  
+                   "$lang{'Prince Edward Island'}", 
+                   "$lang{'Quebec'}", 
+                   "$lang{'Rhode Island'}", 
+                   "$lang{'South Carolina'}", 
+                   "$lang{'South Dakota'}", 
+                   "$lang{'Saskatchewan'}",
+                   "$lang{'Tennessee'}", 
+                   "$lang{'Texas'}", 
+                   "$lang{'Utah'}", 
+                   "$lang{'Virginia'}", 
+                   "$lang{'Vermont'}", 
+                   "$lang{'Washington'}",
+                   "$lang{'Wisconsin'}",
+                   "$lang{'West Virginia'}",
+                   "$lang{'Wyoming'}",
+                   "$lang{'Yukon'}", 
+                   "$lang{'Other'}",
+
+);
+
+@provincestatearr =("NA", 
+                   "Washington DC",
+                   "AB",                          #  <!-- Alberta -->
+                   "AL",                          #  <!-- Alabama -->
+                   "AK",                          #  <!-- Alaska -->
+                   "AR",                           #  <!-- Arkansas -->
+                   "AZ",                           #  <!-- Arizona -->
+                   "BC",                           #  <!-- British Columbia -->
+                   "CA",                           #  <!-- California -->
+                   "CO",                           #  <!-- Colorado -->
+                   "CT",                           #  <!-- Connecticut -->
+                   "DE",                           #  <!-- Delaware -->
+                   "FL",                            # <!-- Florida -->
+                   "GA",                           #  <!-- Georgia -->
+                   "HI",                            #  <!--Hawaii -->
+                   "IA",                            #   <!-- Iowa -->
+                   "ID",                            #   <!-- Idaho -->
+                   "IL",                             #   <!-- Illinois -->
+                   "IN",                             # <!-- Indiana -->
+                   "KS",                            # <!-- Kansas --> 
+                   "KY",                           # <!-- Kentucky -->
+                   "LA",                            #  <!-- Louisiana -->
+                   "MA",                           #  <!-- Massachusetts -->
+                   "MB",                           #  <!-- Manitoba -->
+                    "MD",                          #  <!-- Maryland -->
+                    "ME",                          #   <!-- Maine -->
+                    "MI",                           #    <!-- Michigan -->
+                    "MN",                         #  <!-- Minnesota -->
+                    "MO",                         #   <!-- Missouri -->
+                    "MS",                          #   <!-- Mississippi -->
+                    "MT",                          #  <!-- Montana  -->
+                    "NB",                          #   <!-- New Brunswick -->
+                    "NC",                          #   <!-- North Carolina -->
+                    "ND",                          #  <!-- North Dakota -->
+                    "NE",                          #  <!-- Nebraska --> 
+                    "NF",                          #  <!-- Newfoundland -->
+                    "NH",                         # <!-- New Hampshire -->
+                    "NJ",                          #   <!-- New Jersy -->
+                    "NM",                        #  <!-- New Mexico -->
+                    "NT",                         #   <!-- Northwest Territories -->
+                    "NS",                         #   <!-- Nova Scotia -->
+                    "NV",                         #  <!-- Nevada -->
+                    "NY",                         #  <!-- New York -->
+                    "OH",                         #  <!-- Ohio -->
+                    "OK",                         # <!-- Oklahoma --> 
+                    "ON",                         # <!-- Ontario -->
+                    "OR",                         #  <!-- Oregan -->
+                    "PA",                         #   <!-- Pennsylvania --> 
+                    "PE",                          #  <!-- Prince Edward Island -->
+                    "PQ",                         #   <!-- Quebec -->
+                    "RI",                          #   <!-- Rhode Island -->
+                    "SC",                         #   <!-- South Carolina --> 
+                    "SD",                         #   <!-- South Dakota -->
+                    "SK",                         #   <!-- Saskatchewan -->
+                    "TN",                         #   <!-- Tennessee -->
+                    "TX",                         #   <!-- Texas -->
+                    "UT",                         #  <!-- Utah -->
+                    "VA",                        #   <!-- Virginia -->
+                    "VT",                         #   <!-- Vermont -->
+                    "WA",                        #  <!-- Washington -->
+                    "WI",                         #   <!-- Wisconsin -->
+                    "WV",                       #  <!-- West Virginia -->
+                    "WY",                       #  <!-- Wyoming -->
+                    "YK",                         #  <!-- Yukon -->
+                    "Other",
+);
+
+
+
+@classifyarrayname=("$lang{'On Sale'}", "$lang{'Baking'}", "$lang{'Beverages'}", 
+"$lang{'Breakfast and Cereal'}", "$lang{'Candy'}",  
+"$lang{'Coffee'}", "$lang{'Meals'}", "$lang{'Meat'}",  );
+
+
+@classifyarray=("onsale", "baking", "beverages", "breakfastandcereal", "candy", "coffee", "meals", "meat");
+
+$defaultclassifyarrayname="$lang{'On Sale'}";
+$defaultclassifyarray="onsale";
+
+%categoryarray=("onsale" => ["baking", 
+                                       "beverages",
+                                       "breakfastandcereal",
+                                       "candy",
+                                       "coffee",                         
+                                       "meals",
+                                       "meat"
+                                       ],
+
+                "baking" =>  ["coatingsandbatters", 
+                                "flours",
+                                "ingredients",
+                                "powder",
+                                "syrups"],
+
+                "beverages" => [ "juices",
+                                  "milk",
+                                  "soda",
+                                  "tea",
+                                  "water"
+                               ],
+
+
+                "breakfastandcereal" => ["cereal", 
+                                                   "cerealbars", 
+                                                   "oatmeal", 
+                                                   "pancake"],
+
+                "candy" => ["chocolate",
+                            "gum", 
+                            "mints"], 
+
+       "coffee"=> ["creamers", "instantcoffee", 
+                       "groundcoffee",
+                       "coffeebeans"],
+
+        "meals" => ["boxedmeals", 
+                    "cannedgoods",
+                    "rice",
+                    "pasta",
+                    "sauces",
+                    "soups"],
+
+         "meat" => ["beef",
+                    "chicken",
+                    "fish",
+                    "pork",
+                    "shrimp"],
+
+
+);
+
+%defaultcategoryarray=(
+                       "onsale" => ["meals"],
+
+                "baking" =>  ["flours"],
+
+
+                "beverages" => ["soda"],
+
+                "breakfastandcereal" => ["cereal"],
+
+                "candy" => ["chocolate"], 
+
+       "coffee"=> ["groundcoffee"],
+
+        "meals" => ["boxedmeals"],
+
+         "meat" => ["beef"],
+
+                        
+);
+
+%categoryarrayname=("onsale" => ["$lang{'Baking'}", 
+                                       "$lang{'Beverages'}",
+                                       "$lang{'Breakfast and Cereal'}",
+                                       "$lang{'Candy'}",
+                                       "$lang{'Coffee'}", 
+                                       "$lang{'Meals'}",
+                                       "$lang{'Meat'}"
+                                       ],
+
+                "baking" =>  ["$lang{'Coatings and Batters'}", 
+                                "$lang{'Flours'}",
+                                "$lang{'Ingredients'}",
+                                "$lang{'Powder'}",
+                                "$lang{'Syrups'}"],
+
+              "beverages" => [ "$lang{'Juices'}",
+                                  "$lang{'Milk'}",
+                                  "$lang{'Soda'}",
+                                  "$lang{'Tea'}",
+                                  "$lang{'Water'}"
+                               ],
+
+                "breakfastandcereal" => ["$lang{'Cereal'}", 
+                                                   "$lang{'Cereal Bars'}", 
+                                                   "$lang{'Oatmeal'}", 
+                                                   "$lang{'Pancake'}"],
+
+                "candy" => ["$lang{'Chocolate'}",
+                            "$lang{'Gum'}", 
+                            "$lang{'Mints'}"], 
+
+       "coffee"=> ["$lang{'Creamers'}", "$lang{'Instant Coffee'}", 
+                       "$lang{'Ground Coffee'}",
+                       "$lang{'Coffee Beans'}"],
+
+        "meals" => ["$lang{'Boxed Meals'}", 
+                    "$lang{'Canned Goods'}",
+                    "$lang{'Rice'}",
+                    "$lang{'Pasta'}",
+                    "$lang{'Sauces'}",
+                    "$lang{'Soups'}"],
+
+         "meat" => ["$lang{'Beef'}",
+                    "$lang{'Chicken'}",
+                    "$lang{'Fish'}",
+                    "$lang{'Pork'}",
+                    "$lang{'Shrimp'}"],
+);
+
+
+%categoryarrayattri=("onsale" => {"baking" => ["_price", "_weight", "_volume"],
+                                       "beverages" => ["_price", "_weight", "_volume"],
+                                       "breakfastandcereal" =>["_price", "_weight", "_volume"],
+                                       "candy" =>["_price", "_weight", "_volume"],
+                                       "coffee" => ["_price", "_weight", "_volume"],                         
+                                       "meals" =>["_price", "_weight", "_volume"],
+                                       "meat" => ["_price", "_weight", "_volume"]},
+
+               "baking" =>  {"coatingsandbatters" =>["_price", "_weight", "_volume"],
+                                "flours" => ["_price", "_weight", "_volume"],
+                                "ingredients" =>["_price", "_weight", "_volume"],
+                                "powder" =>["_price", "_weight", "_volume"],
+                                "syrups" =>["_price", "_weight", "_volume"] },
+
+              "beverages" => { "juices" => ["_price", "_weight", "_volume"],
+                                  "milk"=> ["_price", "_weight", "_volume"],
+                                  "soda"=> ["_price", "_weight", "_volume"],
+                                  "tea"=> ["_price", "_weight", "_volume"],
+                                  "water"=> ["_price", "_weight", "_volume"]
+                               },
+
+
+
+                "breakfastandcereal" => {"cereal" => ["_price", "_weight", "_volume"],
+                                                   "cerealbars" => ["_price", "_weight", "_volume"], 
+                                                   "oatmeal" => ["_price", "_weight", "_volume"], 
+                                                   "pancake"=> ["_price", "_weight", "_volume"]},
+
+                "candy" => {"chocolate" => ["_price", "_weight", "_volume"],
+                            "gum" => ["_price", "_weight", "_volume"],
+                            "mints"=> ["_price", "_weight", "_volume"]}, 
+
+       "coffee"=> {"creamers" =>["_price", "_weight", "_volume"], 
+                   "instantcoffee" =>["_price", "_weight", "_volume"],
+                       "groundcoffee" =>["_price", "_weight", "_volume"],
+                       "coffeebeans" => ["_price", "_weight", "_volume"]},
+
+        "meals" => {"boxedmeals" => ["_price", "_weight", "_volume"],
+                    "cannedgoods" => ["_price", "_weight", "_volume"],
+                    "rice" => ["_price", "_weight", "_volume"],
+                    "pasta" => ["_price", "_weight", "_volume"],
+                    "sauces" => ["_price", "_weight", "_volume"],
+                    "soups" => ["_price", "_weight", "_volume"]},
+
+         "meat" => {"beef" => ["_price", "_weight", "_volume"],
+                    "chicken" =>["_price", "_weight", "_volume"],
+                    "fish" => ["_price", "_weight", "_volume"],
+                    "pork" => ["_price", "_weight", "_volume"],
+                    "shrimp" => ["_price", "_weight", "_volume"]},
+
+);
+
+                   
+
+
+%categoryarrayattriname=("onsale" => {"baking" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                       "beverages" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                       "breakfastandcereal" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                       "candy" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                       "coffee" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],                         
+                                       "meals" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                       "meat" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]},
+
+               "baking" =>  {"coatingsandbatters" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"], 
+                                "flours" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                "ingredients" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                "powder" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                "syrups" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"] },
+
+             "beverages" => { "juices" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"], 
+                                  "milk" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                  "soda" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                  "tea" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                  "water" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]
+                               },
+
+                "breakfastandcereal" => {"cereal" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"], 
+                                                   "cerealbars" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                                   "oatmeal" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                                   "pancake"=> ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]},
+
+                "candy" => {"chocolate" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                            "gum" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                            "mints"=> ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]}, 
+
+       "coffee"=> {"creamers" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                   "instantcoffee" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"], 
+                       "groundcoffee" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                       "coffeebeans" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]},
+
+        "meals" => {"boxedmeals" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"], 
+                    "cannedgoods" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                    "rice" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                    "pasta" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                    "sauces" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                    "soups" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]},
+
+         "meat" => {"beef" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                    "chicken" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                    "fish" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                    "pork" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                    "shrimp" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]
+});
+
+
+@postdurationarray=("$lang{'One Week'}", "$lang{'Two Weeks'}", "$lang{'One Month'}", "$lang{'Two Months'}", "$lang{'Three Months'}" , "$lang{'Six Months'}",  
+                                        "$lang{'One Year'}", "$lang{'Two Years'}", "$lang{'Three Years'}",
+                                        "$lang{'Nonexpire'}");
+
+@postdurationday=("7", "14", "0", "0", "0", "0", "0", "0", "0", "0" );
+
+$defaultpostdurationday= ("0");                 
+
+
+@postdurationmonth=("0", "0", "1", "2", "3", "6", "0", "0", "0", "0" ),
+
+
+$defaultpostdurationmonth="0";
+
+@postdurationyear=("0", "0", "0", "0", "0", "0", "1", "2", "3", "20");
+                               
+
+$defaultpostdurationyear = "20";
+
+
+@postdurationname=("oneweek", "twoweeks", "onemonth", "twomonths", "threemonths",
+                                                       "sixmonths", "oneyear", "twoyear", "threeyear",
+                                                       "nonexpire");
+
+$defaultpostdurationname = "nonexpire";
+
+
+@adpricearray=("0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00");
+
+$defaultadprice = ("0.00");
+
+
+@picpricearray=("1.00", "1.00", "1.00", "1.00", "1.00", "1.00", "1.00", "1.00", "1.00", "1.00");
+                        
+
+$defaultpicprice= "1.00";
+
+#$taxrate{"kc"} = ("0.07525");
+$taxrate{"kc"} = ("0.0825");
+
+}
+
+
+1; #return true
