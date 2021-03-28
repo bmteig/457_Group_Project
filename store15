@@ -1,5 +1,3 @@
-
-
 sub More_Country_Initialize
 {
 
@@ -221,242 +219,182 @@ local (*in) = shift if @_;    # CGI input
 
 
 
-@classifyarrayname=("$lang{'On Sale'}", "$lang{'Baking'}", "$lang{'Beverages'}", 
-"$lang{'Breakfast and Cereal'}", "$lang{'Candy'}",  
-"$lang{'Coffee'}", "$lang{'Meals'}", "$lang{'Meat'}",  );
+@classifyarrayname=("$lang{'Green Tea'}", "$lang{'Black Tea'}", 
+"$lang{'Herbal Tea'}", "$lang{'Chai Tea'}",  
+"$lang{'White Tea'}" );
 
 
-@classifyarray=("onsale", "baking", "beverages", "breakfastandcereal", "candy", "coffee", "meals", "meat");
+@classifyarray=("greentea", "blacktea", "herbaltea", "chaitea", "whitetea");
 
-$defaultclassifyarrayname="$lang{'On Sale'}";
-$defaultclassifyarray="onsale";
+$defaultclassifyarrayname="$lang{'Green Tea'}";
+$defaultclassifyarray="greentea";
 
-%categoryarray=("onsale" => ["baking", 
-                                       "beverages",
-                                       "breakfastandcereal",
-                                       "candy",
-                                       "coffee",                         
-                                       "meals",
-                                       "meat"
-                                       ],
+%categoryarray=(
 
-                "baking" =>  ["coatingsandbatters", 
-                                "flours",
-                                "ingredients",
-                                "powder",
-                                "syrups"],
+                "greentea" => ["Sencha",
+                                "Fukamushi Sencha",
+                                "Gyokuro",
+                                "Kabusecha",
+                                "Tencha"],
 
-                "beverages" => [ "juices",
-                                  "milk",
-                                  "soda",
-                                  "tea",
-                                  "water"
+                "blacktea" => [ "assam",
+                                  "darjeeling",
+                                  "ceylon",
+                                  "chaikeemun",
+                                  "earlgray"
                                ],
 
 
-                "breakfastandcereal" => ["cereal", 
-                                                   "cerealbars", 
-                                                   "oatmeal", 
-                                                   "pancake"],
+                "herbaltea" => ["chamomile", 
+                                                   "peppermint", 
+                                                   "ginger", 
+                                                   "hibiscus",
+                                                   "sage"],
 
-                "candy" => ["chocolate",
-                            "gum", 
-                            "mints"], 
+                "chaitea" => ["lembu",
+                            "masala", 
+                            "rongasaah",
+                            "sulaimani",
+                            "cardamom"], 
 
-       "coffee"=> ["creamers", "instantcoffee", 
-                       "groundcoffee",
-                       "coffeebeans"],
+       "whitetea"=> ["silverneedle", "whitepeony", 
+                       "tributeeyebrow",
+                       "longlifeeyebrow",
+                       "nanmei"],
 
-        "meals" => ["boxedmeals", 
-                    "cannedgoods",
-                    "rice",
-                    "pasta",
-                    "sauces",
-                    "soups"],
-
-         "meat" => ["beef",
-                    "chicken",
-                    "fish",
-                    "pork",
-                    "shrimp"],
-
-
+      
 );
 
 %defaultcategoryarray=(
-                       "onsale" => ["meals"],
+                       
 
-                "baking" =>  ["flours"],
+                "greentea" => ["Sencha"],
 
+                "blacktea" => ["assam"],
 
-                "beverages" => ["soda"],
+                "herbaltea" => ["chamomile"],
 
-                "breakfastandcereal" => ["cereal"],
+                "chaitea" => ["lembu"], 
 
-                "candy" => ["chocolate"], 
+       "whitetea"=> ["tributeeyebrow"],
 
-       "coffee"=> ["groundcoffee"],
-
-        "meals" => ["boxedmeals"],
-
-         "meat" => ["beef"],
+        
 
                         
 );
 
-%categoryarrayname=("onsale" => ["$lang{'Baking'}", 
-                                       "$lang{'Beverages'}",
-                                       "$lang{'Breakfast and Cereal'}",
-                                       "$lang{'Candy'}",
-                                       "$lang{'Coffee'}", 
-                                       "$lang{'Meals'}",
-                                       "$lang{'Meat'}"
-                                       ],
+%categoryarrayname=(
 
-                "baking" =>  ["$lang{'Coatings and Batters'}", 
-                                "$lang{'Flours'}",
-                                "$lang{'Ingredients'}",
-                                "$lang{'Powder'}",
-                                "$lang{'Syrups'}"],
+                "greentea" =>  ["$lang{'Sencha'}", 
+                                "$lang{'Fukamushi Sencha'}",
+                                "$lang{'Gyokuro'}",
+                                "$lang{'Kabusecha'}",
+                                "$lang{'Tencha'}"],
 
-              "beverages" => [ "$lang{'Juices'}",
-                                  "$lang{'Milk'}",
-                                  "$lang{'Soda'}",
-                                  "$lang{'Tea'}",
-                                  "$lang{'Water'}"
+              "blacktea" => [ "$lang{'Assam'}",
+                                  "$lang{'Darjeeling'}",
+                                  "$lang{'Ceylon'}",
+                                  "$lang{'Chai Kee Mun'}",
+                                  "$lang{'Earl Gray'}"
                                ],
 
-                "breakfastandcereal" => ["$lang{'Cereal'}", 
-                                                   "$lang{'Cereal Bars'}", 
-                                                   "$lang{'Oatmeal'}", 
-                                                   "$lang{'Pancake'}"],
+                "herbaltea" => ["$lang{'Chamomile'}", 
+                                                   "$lang{'Peppermint'}", 
+                                                   "$lang{'Ginger'}", 
+                                                   "$lang{'Hibiscus'}",
+                                                   "$lang{'Sage'}"],
 
-                "candy" => ["$lang{'Chocolate'}",
-                            "$lang{'Gum'}", 
-                            "$lang{'Mints'}"], 
+                "chaitea" => ["$lang{'Lembu'}",
+                            "$lang{'Masala'}", 
+                            "$lang{'Ronga Saah'}",
+                            "$lang{'Sulaimani'}",
+                            "$lang{'Cardamom'}"], 
 
-       "coffee"=> ["$lang{'Creamers'}", "$lang{'Instant Coffee'}", 
-                       "$lang{'Ground Coffee'}",
-                       "$lang{'Coffee Beans'}"],
+       "whitetea"=> ["$lang{'Silver Needle'}", "$lang{'White Peony'}", 
+                       "$lang{'Tribute Eyebrow'}",
+                       "$lang{'Long Life Eyebrow'}",
+                       "$lang{'Nan Mei'}"],
 
-        "meals" => ["$lang{'Boxed Meals'}", 
-                    "$lang{'Canned Goods'}",
-                    "$lang{'Rice'}",
-                    "$lang{'Pasta'}",
-                    "$lang{'Sauces'}",
-                    "$lang{'Soups'}"],
-
-         "meat" => ["$lang{'Beef'}",
-                    "$lang{'Chicken'}",
-                    "$lang{'Fish'}",
-                    "$lang{'Pork'}",
-                    "$lang{'Shrimp'}"],
+        
 );
 
 
-%categoryarrayattri=("onsale" => {"baking" => ["_price", "_weight", "_volume"],
-                                       "beverages" => ["_price", "_weight", "_volume"],
-                                       "breakfastandcereal" =>["_price", "_weight", "_volume"],
-                                       "candy" =>["_price", "_weight", "_volume"],
-                                       "coffee" => ["_price", "_weight", "_volume"],                         
-                                       "meals" =>["_price", "_weight", "_volume"],
-                                       "meat" => ["_price", "_weight", "_volume"]},
+%categoryarrayattri=(
 
-               "baking" =>  {"coatingsandbatters" =>["_price", "_weight", "_volume"],
-                                "flours" => ["_price", "_weight", "_volume"],
-                                "ingredients" =>["_price", "_weight", "_volume"],
-                                "powder" =>["_price", "_weight", "_volume"],
-                                "syrups" =>["_price", "_weight", "_volume"] },
+               "greentea" =>  {"Sencha" =>["_price", "_weight", "_volume"] ,
+                                "Fukamushi Sencha"=>["_price", "_weight", "_volume"] ,
+                                "Gyokuro"=>["_price", "_weight", "_volume"] ,
+                                "Kabusecha"=>["_price", "_weight", "_volume"] ,
+                                "Tencha"=>["_price", "_weight", "_volume"] 
+                                 },
 
-              "beverages" => { "juices" => ["_price", "_weight", "_volume"],
-                                  "milk"=> ["_price", "_weight", "_volume"],
-                                  "soda"=> ["_price", "_weight", "_volume"],
-                                  "tea"=> ["_price", "_weight", "_volume"],
-                                  "water"=> ["_price", "_weight", "_volume"]
+              "blacktea" => { "assam" => ["_price", "_weight", "_volume"],
+                                  "darjeeling"=> ["_price", "_weight", "_volume"],
+                                  "ceylon"=> ["_price", "_weight", "_volume"],
+                                  "chaikeemun"=> ["_price", "_weight", "_volume"],
+                                  "earlgray"=> ["_price", "_weight", "_volume"]
                                },
 
 
 
-                "breakfastandcereal" => {"cereal" => ["_price", "_weight", "_volume"],
-                                                   "cerealbars" => ["_price", "_weight", "_volume"], 
-                                                   "oatmeal" => ["_price", "_weight", "_volume"], 
-                                                   "pancake"=> ["_price", "_weight", "_volume"]},
+                "herbaltea" => {"chamomile" => ["_price", "_weight", "_volume"],
+                                                   "peppermint" => ["_price", "_weight", "_volume"], 
+                                                   "ginger" => ["_price", "_weight", "_volume"], 
+                                                   "hibiscus"=> ["_price", "_weight", "_volume"],
+                                                   "sage"=> ["_price", "_weight", "_volume"]},
 
-                "candy" => {"chocolate" => ["_price", "_weight", "_volume"],
-                            "gum" => ["_price", "_weight", "_volume"],
-                            "mints"=> ["_price", "_weight", "_volume"]}, 
+                "chaitea" => {"lembu" => ["_price", "_weight", "_volume"],
+                            "masala" => ["_price", "_weight", "_volume"],
+                            "rongasaah"=> ["_price", "_weight", "_volume"],
+                            "sulaimani"=> ["_price", "_weight", "_volume"],
+                            "cardamom"=> ["_price", "_weight", "_volume"]}, 
 
-       "coffee"=> {"creamers" =>["_price", "_weight", "_volume"], 
-                   "instantcoffee" =>["_price", "_weight", "_volume"],
-                       "groundcoffee" =>["_price", "_weight", "_volume"],
-                       "coffeebeans" => ["_price", "_weight", "_volume"]},
+       "whitetea"=> {"silverneedle" =>["_price", "_weight", "_volume"], 
+                   "whitepeony" =>["_price", "_weight", "_volume"],
+                       "tributeeyebrow" =>["_price", "_weight", "_volume"],
+                       "longlifeeyebrow" => ["_price", "_weight", "_volume"],
+                       "nanmei" => ["_price", "_weight", "_volume"]},
 
-        "meals" => {"boxedmeals" => ["_price", "_weight", "_volume"],
-                    "cannedgoods" => ["_price", "_weight", "_volume"],
-                    "rice" => ["_price", "_weight", "_volume"],
-                    "pasta" => ["_price", "_weight", "_volume"],
-                    "sauces" => ["_price", "_weight", "_volume"],
-                    "soups" => ["_price", "_weight", "_volume"]},
-
-         "meat" => {"beef" => ["_price", "_weight", "_volume"],
-                    "chicken" =>["_price", "_weight", "_volume"],
-                    "fish" => ["_price", "_weight", "_volume"],
-                    "pork" => ["_price", "_weight", "_volume"],
-                    "shrimp" => ["_price", "_weight", "_volume"]},
 
 );
 
                    
 
 
-%categoryarrayattriname=("onsale" => {"baking" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                                       "beverages" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                                       "breakfastandcereal" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                                       "candy" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                                       "coffee" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],                         
-                                       "meals" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                                       "meat" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]},
+%categoryarrayattriname=(
 
-               "baking" =>  {"coatingsandbatters" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"], 
-                                "flours" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                                "ingredients" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                                "powder" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                                "syrups" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"] },
+               "greentea" =>  {"Sencha" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"], 
+                                "Fukamushi Sencha" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                "Gyokuro" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                "Kabusecha" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                "Tencha" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"] },
 
-             "beverages" => { "juices" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"], 
-                                  "milk" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                                  "soda" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                                  "tea" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                                  "water" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]
+             "blacktea" => { "assam" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"], 
+                                  "darjeeling" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                  "ceylon" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                  "chaikeemun" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                                  "earlgray" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]
                                },
 
-                "breakfastandcereal" => {"cereal" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"], 
+                "herbaltea" => {"cereal" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"], 
                                                    "cerealbars" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
                                                    "oatmeal" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
                                                    "pancake"=> ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]},
 
-                "candy" => {"chocolate" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                            "gum" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                            "mints"=> ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]}, 
+                "chaitea" => {"lembu" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                            "masala" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                            "rongasaah"=> ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                            "sulaimani"=> ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                            "cardamom"=> ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]}, 
 
-       "coffee"=> {"creamers" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                   "instantcoffee" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"], 
-                       "groundcoffee" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                       "coffeebeans" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]},
+       "whitetea"=> {"silverneedle" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                   "whitepeony" => ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"], 
+                       "tributeeyebrow" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                       "longlifeeyebrow" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
+                       "nanmei" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]},
 
-        "meals" => {"boxedmeals" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"], 
-                    "cannedgoods" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                    "rice" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                    "pasta" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                    "sauces" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                    "soups" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]},
 
-         "meat" => {"beef" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                    "chicken" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                    "fish" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                    "pork" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"],
-                    "shrimp" =>  ["$lang{'Price:'}|10|<br><br>", "$lang{'Weight:'}|15|&nbsp; &nbsp;", "$lang{'Volume:'}|15|<br><br>"]
-});
+);
 
 
 @postdurationarray=("$lang{'One Week'}", "$lang{'Two Weeks'}", "$lang{'One Month'}", "$lang{'Two Months'}", "$lang{'Three Months'}" , "$lang{'Six Months'}",  
