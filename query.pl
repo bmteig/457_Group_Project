@@ -5,13 +5,13 @@ require "cgi-lib.pl";
 MAIN:
 {
     &ReadParse(*input);
-   # $a = $input{'classify'};
-   # $b = $input{'category'};
-   # $c = $input{'title'};
+    $a = $input{'classify'};
+    $b = $input{'category'};
+    $c = $input{'title'};
 
-    $a = "Tea";
-    $b = "";
-    $c = "Tea";
+    #$a = 'Green Tea';
+    #$b = '';
+    #$c = '';
 }
 
 #$ignore='.com';
@@ -39,7 +39,7 @@ while($result =~/(<tr><td>)([\s\S]*?)(\/td><\/tr>)([\s\S]*?)(\/td><\/tr>)/){
     $stringStart;
     $currEntry;
 
-    #;
+    
     $currEntry = $&;
     $end=$+[1];    
   
@@ -58,37 +58,38 @@ while($result =~/(<tr><td>)([\s\S]*?)(\/td><\/tr>)([\s\S]*?)(\/td><\/tr>)/){
 
 close(INPUT);
 
-$output='';
+@matches=();
 
 foreach(@entries){
 
-    # $foundA=0;
-    # $foundB=0;
-    # $foundC=0;
+    $foundA=0;
+    $foundB=0;
+    $foundC=0;
 
-    # if((index($currEntry, $a) !=-1) | ($a eq "")){
-    #     $foundA=1;
-    # }
-
-    
-    # if((index($currEntry, $b) !=-1) | !($b eq "")){
-    #     $foundB=1;
-    # }
-
-    # if((index($currEntry, $b) !=-1) | !($b eq "")){
-    #     $foundC=1;
-    # }
-
-    # if($foundA && $foundB && $foundC){
-
-    #     print "HELLLLLO";
-
-        
-
-    # } 
+    if((index($_, $a) !=-1) | ($a eq '')){
+       $foundA=1;
+    }
 
     
-   
+    if((index($_, $b) !=-1) | ($b eq '')){
+        $foundB=1;
+    }
+
+    if((index($_, $c) !=-1) | ($c eq '')){
+        $foundC=1;
+    }
+
+    if($foundA && $foundB && $foundC){
+
+        push(@matches,$_)
+
+    } 
+
+}
+
+$output='';
+
+foreach(@matches){  
     $output= join '',$output,' ',$_;
 }
 
